@@ -1,4 +1,5 @@
 require "codacy/configuration"
+require "codacy/reporter"
 require "codacy/client"
 require "codacy/formatter"
 require "codacy/git"
