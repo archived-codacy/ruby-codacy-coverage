@@ -1,3 +1,5 @@
 require "codacy/configuration"
+require "codacy/client"
+require "codacy/formatter"
 require "codacy/git"
-require "codacy/version"
+require "codacy/parser"

@@ -20,7 +20,7 @@ module Codacy
     end
 
     def self.git_dir
-      return '.'
+      return Dir.pwd
     end
 
     def self.git(command)
