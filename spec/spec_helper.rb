@@ -9,4 +9,4 @@ end
 SimpleCov.formatter = InceptionFormatter
 SimpleCov.start
 
-require 'codacy'
+require 'codacy-coverage'

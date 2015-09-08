@@ -16,7 +16,7 @@ module Codacy
             nil
           end
         end.compact
-        lines_covered = ((coverage_lines.length.to_f / v.compact.length) * 100).round
+        lines_covered = v.compact.length == 0 ? 0 : ((coverage_lines.length.to_f / v.compact.length) * 100).round
         Hash[
             [['filename', file_dir],
              ['total', lines_covered],

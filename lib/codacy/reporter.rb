@@ -2,7 +2,7 @@ require 'simplecov'
 
 module Codacy
   module Reporter
-    def start
+    def self.start
       SimpleCov.formatter = Codacy::Formatter
       SimpleCov.start
     end
