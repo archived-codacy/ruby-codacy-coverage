@@ -1,6 +1,5 @@
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'codacy/version'
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Nuno Teixeira"]
@@ -15,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "codacy-coverage"
   gem.require_paths = ["lib"]
-  gem.version       = Codacy::VERSION
+  gem.version       = '0.0.1'
 
   gem.required_ruby_version = '>= 1.8.7'
 
