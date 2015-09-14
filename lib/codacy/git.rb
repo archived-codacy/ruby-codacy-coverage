@@ -13,8 +13,6 @@ module Codacy
       commit
     end
 
-    private
-
     def self.git_commit
       git("log -1 --pretty=format:'%H'")
     end

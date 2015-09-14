@@ -21,7 +21,7 @@ module Codacy
         logger.error 'Could not find the current commit, make sure that you are running inside a git project.'
         false
       else
-        logger.info('Posting ' + result.to_s.bytes.length.to_s + ' bytes to ' + url)
+        logger.info('Posting ' + result.to_s.length + ' bytes to ' + url)
         response = send_request(url, result, project_token)
 
         logger.info(response)
