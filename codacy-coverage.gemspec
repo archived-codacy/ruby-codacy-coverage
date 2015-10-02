@@ -16,9 +16,10 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = '0.1.0'
 
-  gem.required_ruby_version = '>= 1.8.7'
+  gem.required_ruby_version = '>= 1.9.2'
 
   gem.add_dependency 'simplecov', '~> 0.10.0'
+  gem.add_dependency 'rest-client', '~> 1.8.0'
 
   gem.add_development_dependency 'bundler', '~> 1.7'
 end
