@@ -14,12 +14,12 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "codacy-coverage"
   gem.require_paths = ["lib"]
-  gem.version       = '0.1.0'
+  gem.version       = '0.2.0'
 
   gem.required_ruby_version = '>= 1.9.2'
 
   gem.add_dependency 'simplecov', '~> 0.10.0'
-  gem.add_dependency 'rest-client', '~> 1.8.0'
+  gem.add_dependency 'rest-client', '~> 1.8'
 
   gem.add_development_dependency 'bundler', '~> 1.7'
 end
