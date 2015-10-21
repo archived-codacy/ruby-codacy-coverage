@@ -18,7 +18,7 @@ module Codacy
     end
 
     def self.git_dir
-      return `git rev-parse --show-toplevel`
+      return `git rev-parse --show-toplevel`.strip!
     end
 
     def self.git(command)
