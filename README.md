@@ -2,8 +2,10 @@
 
 Ruby coverage reporter for Codacy https://www.codacy.com
 
-[![Codacy Badge](https://api.codacy.com/project/badge/72a7aaa0e3fd4a8db27607da159d3daa)](https://www.codacy.com/app/Codacy/ruby-codacy-coverage)
+[![Codacy Badge](https://api.codacy.com/project/badge/grade/72a7aaa0e3fd4a8db27607da159d3daa)](https://www.codacy.com/app/Codacy/ruby-codacy-coverage)
+[![Codacy Badge](https://api.codacy.com/project/badge/coverage/72a7aaa0e3fd4a8db27607da159d3daa)](https://www.codacy.com/app/Codacy/ruby-codacy-coverage)
 [![Build Status](https://circleci.com/gh/codacy/ruby-codacy-coverage.png?style=shield&circle-token=:circle-token)](https://circleci.com/gh/codacy/ruby-codacy-coverage)
+[![Gem Version](https://badge.fury.io/rb/codacy-coverage.svg)](https://badge.fury.io/rb/codacy-coverage)
 
 Parses SimpleCov output and submits the result to Codacy
 
@@ -39,3 +41,22 @@ By default this plugin will not submit results if you run your tests in localhos
 ```
 export CODACY_RUN_LOCAL=true
 ```
+
+#### Running Tests
+
+When you run your tests, the plugin will send the coverage info to Codacy.
+
+For example, run the following commands:
+
+```
+gem install bundler
+bundle install
+```
+
+This will install the required dependencies. Then just run the tests:
+
+```
+bundle exec rspec
+```
+
+You can now check your coverage results in the Codacy dashboard of your project.
