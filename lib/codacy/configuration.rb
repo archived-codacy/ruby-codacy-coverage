@@ -5,18 +5,25 @@ module Codacy
   module Configuration
 
     def self.logger
-      log_filename = self.temp_dir + 'codacy-coverage_' + Date.today.to_s + '.log'
-      log_file = File.open(log_filename, 'a')
+      logger_info = logger_to_stdout
+      logger_info.level = Logger::INFO
 
-      logger_file = Logger.new(log_file)
-      logger_file.level = Logger::DEBUG
+      logger_debug = ENV["DEBUG_STDOUT"] ? logger_to_stdout : logger_to_file
+      logger_debug.level = Logger::DEBUG
 
-      logger_stdout = Logger.new(STDOUT)
-      logger_stdout.level = Logger::INFO
-
-      log = MultiLogger.new(logger_stdout, logger_file)
+      log = MultiLogger.new(logger_info, logger_debug)
 
       log
+    end
+
+    def self.logger_to_stdout
+      Logger.new(STDOUT)
+    end
+
+    def self.logger_to_file
+      log_filename = self.temp_dir + 'codacy-coverage_' + Date.today.to_s + '.log'
+      log_file = File.open(log_filename, 'a')
+      Logger.new(log_file)
     end
 
     def self.temp_dir
