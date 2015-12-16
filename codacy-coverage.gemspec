@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.name          = "codacy-coverage"
   gem.require_paths = ["lib"]
-  gem.version       = '0.2.3'
+  gem.version       = ENV['PUBLISH_VERSION'] || '1.0.dev'
 
   gem.required_ruby_version = '>= 1.9.2'
 
