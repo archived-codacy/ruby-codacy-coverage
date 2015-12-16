@@ -59,4 +59,10 @@ This will install the required dependencies. Then just run the tests:
 bundle exec rspec
 ```
 
+By default, the debug info will be logged into a file. If you want the debug info to be printed to stdout you can:
+
+```
+export DEBUG_STDOUT=true
+```
+
 You can now check your coverage results in the Codacy dashboard of your project.
