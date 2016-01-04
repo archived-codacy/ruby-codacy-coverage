@@ -42,6 +42,8 @@ By default this plugin will not submit results if you run your tests in localhos
 export CODACY_RUN_LOCAL=true
 ```
 
+Note: You should keep your API token well **protected**, as it grants owner permissions to your projects.
+
 #### Running Tests
 
 When you run your tests, the plugin will send the coverage info to Codacy.
