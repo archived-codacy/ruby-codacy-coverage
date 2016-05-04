@@ -19,7 +19,6 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '>= 1.9.2'
 
   gem.add_dependency 'simplecov', '>= 0.10.0'
-  gem.add_dependency 'rest-client', '~> 1.8'
 
   gem.add_development_dependency 'bundler', '~> 1.7'
 end

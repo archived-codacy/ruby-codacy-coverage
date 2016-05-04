@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 gemspec
-
-gem 'rake', '>= 10.4'
-gem 'rspec', '>= 3.2'
+ruby "1.9.3"
+ 
+gem 'rake', :platforms => 'ruby_19'
+gem 'rspec', :platforms => 'ruby_19'
 gem 'simplecov', :require => false
-gem 'rest-client'
