@@ -1,5 +1,6 @@
 require 'json'
-require 'rest_client'
+require "uri"
+require "net/https"
 
 module Codacy
   module ClientAPI
@@ -29,19 +30,21 @@ module Codacy
       end
     end
 
-    def self.send_request(url, request, project_token, redirects = 3)
-      RestClient.post(
-          url,
-          request,
-          'project_token' => project_token,
-          :content_type => :json
-      ) do |resp, req, result, &block|
-        if [301, 302, 307].include? resp.code and redirects > 0
-          redirected_url = resp.headers[:location]
-          send_request(redirected_url, req, project_token, redirects - 1)
-        else
-          resp.return!(req, result, &block)
-        end
+    def self.send_request(url, content, project_token, redirects = 3)
+      uri = URI.parse(url)
+      http = Net::HTTP.new(uri.host, uri.port)
+      request = Net::HTTP::Post.new(uri.path)
+      http.use_ssl = true
+      request["project_token"] = project_token
+      request["Content-Type"] = "application/json"
+      request.body = content
+      response = http.request(request)
+
+      if [301, 302, 307].include? response.code.to_i and redirects > 0
+        redirected_url = response.headers[:location]
+        send_request(redirected_url, content, project_token, redirects - 1)
+      else
+        response.body
       end
     end
 
