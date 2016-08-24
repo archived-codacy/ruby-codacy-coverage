@@ -21,9 +21,17 @@ module Codacy
     end
 
     def self.logger_to_file
-      log_filename = self.temp_dir + 'codacy-coverage_' + Date.today.to_s + '.log'
-      log_file = File.open(log_filename, 'a')
+      log_file_path = self.temp_dir + self.log_file_name
+      log_file = File.open(log_file_path, 'a')
       Logger.new(log_file)
+    end
+
+    def self.log_file_name
+      today = Date.today
+      # rails overrides to_s method of Date class
+      # https://github.com/rails/rails/blob/master/activesupport/lib/active_support/core_ext/date/conversions.rb#L52
+      timestamp = today.respond_to?(:to_default_s) ? today.to_default_s : today.to_s
+      'codacy-coverage_' + timestamp + '.log'
     end
 
     def self.temp_dir

@@ -13,6 +13,11 @@ module Codacy
       commit
     end
 
+    def self.work_dir
+      work_dir = ENV['WORK_DIR'] || git_dir
+      work_dir
+    end
+
     def self.git_commit
       git("log -1 --pretty=format:'%H'")
     end
