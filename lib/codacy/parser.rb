@@ -2,7 +2,7 @@ module Codacy
   module Parser
 
     def self.parse_file(simplecov_result)
-      project_dir = Codacy::Git.git_dir
+      project_dir = Codacy::Git.work_dir
 
       logger.info("Parsing simplecov result to Codacy format...")
       logger.debug(simplecov_result.original_result)
