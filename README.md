@@ -40,7 +40,7 @@ export CODACY_PROJECT_TOKEN=%Project_Token%
 
 To send coverage in the enterprise version you should:
 ```
-export CODACY_API_BASE_URL=<Codacy_instance_URL>:16006
+export CODACY_BASE_API_URL=<Codacy_instance_URL>:16006
 ```
 
 By default this plugin will not submit results if you run your tests in localhost. If you want to force the submission you can setup the following environment variable:
