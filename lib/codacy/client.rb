@@ -34,7 +34,7 @@ module Codacy
       uri = URI.parse(url)
       http = Net::HTTP.new(uri.host, uri.port)
       request = Net::HTTP::Post.new(uri.path)
-      http.use_ssl = true
+      http.use_ssl = uri.scheme == "https"
       request["project_token"] = project_token
       request["Content-Type"] = "application/json"
       request.body = content
