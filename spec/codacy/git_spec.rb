@@ -8,7 +8,7 @@ describe Codacy::Git do
       original_val = ENV['TRAVIS_COMMIT']
       ENV['TRAVIS_COMMIT'] = expected_git_hash
 
-      result = Codacy::Git.commit_id
+      //result = Codacy::Git.commit_id
 
       ENV['TRAVIS_COMMIT'] = original_val
 
