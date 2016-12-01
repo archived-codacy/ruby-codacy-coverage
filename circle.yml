@@ -1,7 +1,16 @@
-machine:
-  ruby:
-    version: 1.9.3-p0-falcon
+dependencies:
+  pre:
+    - git config --global user.email "ci@codacy.com"
+    - git config --global user.name "Codacy CI"
+  override:
+    - rvm install 1.9.3-p551
+    - rvm install 2.0.0-p648
+    - rvm install 2.1.10
+    - rvm install 2.2.5
+    - rvm install 2.3.1
+  cache_directories:
+    - "~/.rvm"
 
 test:
   override:
-    - bundle exec rspec
+    - scripts/ci.sh
