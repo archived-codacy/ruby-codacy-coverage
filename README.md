@@ -76,6 +76,19 @@ export DEBUG_STDOUT=true
 
 You can now check your coverage results in the Codacy dashboard of your project.
 
+## Troubleshoot
+
+**Cannot send coverage when using VCR**
+
+```
+require 'vcr'
+VCR.configure do |config|
+  # other config options
+  c.allow_http_connections_when_no_cassette = false
+  c.ignore_hosts 'api.codacy.com'
+end
+```
+
 ## What is Codacy?
 
 [Codacy](https://www.codacy.com/) is an Automated Code Review Tool that monitors your technical debt, helps you improve your code quality, teaches best practices to your developers, and helps you save time in Code Reviews.
