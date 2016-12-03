@@ -89,6 +89,28 @@ VCR.configure do |config|
 end
 ```
 
+**Cannot generate local simplecov report**
+
+Override `SimpleCov.formatter` by adding both your prefered simplecov formatter and Codacy's formatter.
+You can also add more options to `SimpleCov.start`.
+
+```ruby
+require 'simplecov'
+require 'codacy-coverage'
+
+SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
+    SimpleCov::Formatter::HTMLFormatter,
+    Codacy::Formatter
+])
+
+SimpleCov.start do
+  add_filter '.gems'
+  add_filter 'pkg'
+  add_filter 'spec'
+  add_filter 'vendor'
+end
+```
+
 ## What is Codacy?
 
 [Codacy](https://www.codacy.com/) is an Automated Code Review Tool that monitors your technical debt, helps you improve your code quality, teaches best practices to your developers, and helps you save time in Code Reviews.
