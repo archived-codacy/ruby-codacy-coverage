@@ -23,9 +23,7 @@ module Codacy
         false
       else
         logger.info('Posting ' + result.to_s.length.to_s + ' bytes to ' + url)
-        VCR.turn_off! if Object.const_defined?('VCR') && VCR.respond_to?(:turn_off!)
         response = send_request(url, result, project_token)
-        VCR.turn_on! if Object.const_defined?('VCR') && VCR.respond_to?(:turn_on!)
 
         logger.info(response)
         response.to_s.include? 'success'
