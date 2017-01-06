@@ -14,7 +14,9 @@ module Codacy
     end
 
     def self.work_dir
-      work_dir = ENV['WORK_DIR'] || git_dir
+      work_dir = ENV['WORK_DIR'] ||
+          ENV['TRAVIS_BUILD_DIR'] ||
+          git_dir
       work_dir
     end
 
@@ -23,7 +25,12 @@ module Codacy
     end
 
     def self.git_dir
-      return `git rev-parse --show-toplevel`.strip!
+      dir = `git rev-parse --show-toplevel`
+      if $?.to_i == 0
+        return dir.strip!
+      else
+        return ''
+      end
     end
 
     def self.git(command)
