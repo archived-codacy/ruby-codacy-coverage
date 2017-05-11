@@ -84,8 +84,8 @@ You can now check your coverage results in the Codacy dashboard of your project.
 require 'vcr'
 VCR.configure do |config|
   # other config options
-  c.allow_http_connections_when_no_cassette = false
-  c.ignore_hosts 'api.codacy.com'
+  config.allow_http_connections_when_no_cassette = false
+  config.ignore_hosts 'api.codacy.com'
 end
 ```
 
