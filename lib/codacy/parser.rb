@@ -10,7 +10,7 @@ module Codacy
       file_reports = simplecov_result.original_result.map do |k, v|
         file_dir = k.sub(project_dir, "").sub("/", "")
         coverage_lines = v.each_with_index.map do |covered, lineNr|
-          if !covered.nil? && covered > 0
+          if !covered.nil?
             [(lineNr + 1).to_s, covered]
           else
             nil
