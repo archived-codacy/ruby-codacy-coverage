@@ -53,6 +53,7 @@ module Codacy
     end
 
     def self.create_url(codacy_base_api, commit)
+      commit = commit.gsub(/[^[:alnum:]]/, "")
       codacy_base_api + '/2.0/coverage/' + commit + '/ruby'
     end
   end
