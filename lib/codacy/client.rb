@@ -11,7 +11,7 @@ module Codacy
       project_token = ENV['CODACY_PROJECT_TOKEN']
       codacy_base_api = ENV['CODACY_BASE_API_URL'] || 'https://api.codacy.com'
       commit = Codacy::Git.commit_id
-      url = codacy_base_api + '/2.0/coverage/' + commit + '/ruby'
+      create_url(codacy_base_api, commit)
 
       result = parsed_result.to_json
 
@@ -50,6 +50,11 @@ module Codacy
 
     def self.logger
       Codacy::Configuration.logger
+    end
+
+    def self.create_url(codacy_base_api, commit)
+      commit = commit.gsub(/[^[:alnum:]]/, "")
+      codacy_base_api + '/2.0/coverage/' + commit + '/ruby'
     end
   end
 end

@@ -16,7 +16,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = ENV['PUBLISH_VERSION'] || '1.0.dev'.freeze
 
-  gem.required_ruby_version = '>= 1.9'
+  gem.required_ruby_version = '>= 2'
 
   gem.add_runtime_dependency 'simplecov'
 

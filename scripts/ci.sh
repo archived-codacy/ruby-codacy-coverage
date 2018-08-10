@@ -2,11 +2,6 @@
 
 set -e
 
-rvm use 1.9.3-p551
-ruby -v
-bundle install --gemfile Gemfile.ruby-19
-bundle exec rspec
-
 rvm use 2.0.0-p648
 ruby -v
 bundle install
