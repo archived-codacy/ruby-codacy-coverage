@@ -11,7 +11,7 @@ module Codacy
       project_token = ENV['CODACY_PROJECT_TOKEN']
       codacy_base_api = ENV['CODACY_BASE_API_URL'] || 'https://api.codacy.com'
       commit = Codacy::Git.commit_id
-      create_url(codacy_base_api, commit)
+      url = create_url(codacy_base_api, commit)
 
       result = parsed_result.to_json
 
