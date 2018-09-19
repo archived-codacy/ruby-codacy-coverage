@@ -21,6 +21,14 @@ describe Codacy::ClientAPI do
 
       expect(url).to include('coverageFinal')
     end
+
+    it 'generates url with partial query parameter' do
+      commit_uuid = "9a7d25976a11f2a145f8fee7c4e4ad58b621d560"
+
+      url = Codacy::ClientAPI.create_url(codacy_base_api, commit_uuid, partial: true)
+
+      expect(url).to include('partial=true')
+    end
   end
 
   describe '.notify_final' do

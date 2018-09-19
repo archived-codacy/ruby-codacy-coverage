@@ -5,12 +5,12 @@ require 'codacy/git'
 
 module Codacy
   module ClientAPI
-    def self.post_results(parsed_result)
+    def self.post_results(parsed_result, partial: false)
       logger.info('Preparing payload...')
       logger.debug(parsed_result)
 
       project_token, codacy_base_api, commit = get_parameters
-      url = create_url(codacy_base_api, commit)
+      url = create_url(codacy_base_api, commit, partial: partial)
 
       result = parsed_result.to_json
 
@@ -51,12 +51,13 @@ module Codacy
       Codacy::Configuration.logger
     end
 
-    def self.create_url(codacy_base_api, commit, final: false)
+    def self.create_url(codacy_base_api, commit, final: false, partial: false)
       commit = commit.gsub(/[^[:alnum:]]/, "")
       if final
         codacy_base_api + '/2.0/commit/' + commit + '/coverageFinal'
       else
-        codacy_base_api + '/2.0/coverage/' + commit + '/ruby'
+        query_params = partial ? '?partial=true' : ''
+        codacy_base_api + '/2.0/coverage/' + commit + '/ruby' + query_params
       end
     end
 
