@@ -1,0 +1,4 @@
+#!/usr/bin/env ruby
+require 'codacy/client'
+
+Codacy::ClientAPI.notify_final
