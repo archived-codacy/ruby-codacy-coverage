@@ -9,6 +9,7 @@ module Codacy
           ENV['CI_COMMIT_ID'] ||
           ENV['WERCKER_GIT_COMMIT'] ||
           ENV['HEROKU_TEST_RUN_COMMIT_VERSION'] ||
+          ENV['CI_COMMIT_SHA'] ||
           git_commit
 
       commit
