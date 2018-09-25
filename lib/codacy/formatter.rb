@@ -29,7 +29,7 @@ module Codacy
 
   end
 
-  class Partial < Formatter
+  class PartialFormatter < Formatter
     def partial
       true
     end

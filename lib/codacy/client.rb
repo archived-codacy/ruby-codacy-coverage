@@ -36,7 +36,7 @@ module Codacy
       http.use_ssl = uri.scheme == "https"
       request["project_token"] = project_token
       request["Content-Type"] = "application/json"
-      request.body = content if content
+      request.body = content
       response = http.request(request)
 
       if [301, 302, 307].include? response.code.to_i and redirects > 0
@@ -73,7 +73,7 @@ module Codacy
         false
       else
         puts 'Posting Coverage Final Notice to ' + url
-        response = send_request(url, nil, project_token)
+        response = send_request(url, '{}', project_token)
 
         puts response
         response.to_s.include? 'success'
