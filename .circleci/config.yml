@@ -1,0 +1,75 @@
+version: 2.1
+
+orbs:
+  codacy: codacy/base@0.3.12
+
+jobs:
+  build_and_test:
+    parameters:
+        ruby_version:
+          type: string
+    docker:
+      - image: circleci/ruby:<< parameters.ruby_version >>
+    working_directory: ~/workdir
+    steps:
+      - attach_workspace:
+          at: ~/
+
+      - run: gem install bundler
+
+      - restore_cache:
+          keys:
+            - ruby-codacy-coverage-{{ checksum "Gemfile.lock" }}
+            - ruby-codacy-coverage-
+
+      - run: bundle install --path vendor/bundle
+
+      - save_cache:
+          key: ruby-codacy-coverage-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run: bundle exec rspec
+
+workflows:
+  version: 2
+  build_and_publish:
+    jobs:
+      - codacy/checkout_and_version
+      - build_and_test:
+          name: build_and_test_2
+          ruby_version: "2"
+          requires:
+            - codacy/checkout_and_version
+      - build_and_test:
+          name: build_and_test_2.3
+          ruby_version: "2.3"
+          requires:
+            - codacy/checkout_and_version
+      - build_and_test:
+          name: build_and_test_2.4
+          ruby_version: "2.4"
+          requires:
+            - codacy/checkout_and_version
+      - build_and_test:
+          name: build_and_test_2.5
+          ruby_version: "2.5"
+          requires:
+            - codacy/checkout_and_version
+      - build_and_test:
+          name: build_and_test_2.6
+          ruby_version: "2.5"
+          requires:
+            - codacy/checkout_and_version
+      - codacy/tag_version:
+          name: tag_version
+          requires:
+            - build_and_test_2
+            - build_and_test_2.3
+            - build_and_test_2.4
+            - build_and_test_2.5
+            - build_and_test_2.6
+          filters:
+            branches:
+              only:
+                - master
