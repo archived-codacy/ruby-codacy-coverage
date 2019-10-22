@@ -4,7 +4,7 @@ module Codacy
     def format(result)
       if should_run?
         parse_result = Codacy::Parser.parse_file(result)
-        Codacy::ClientAPI.post_results(parse_result)
+        Codacy::ClientAPI.post_results(parse_result, partial: partial)
       else
         logger.info("Running locally, skipping Codacy coverage")
       end
@@ -15,6 +15,10 @@ module Codacy
 
     private
 
+    def partial
+      false
+    end
+
     def should_run?
       ENV["CI"] || ENV["JENKINS_URL"] || ENV['TDDIUM'] || ENV["CODACY_RUN_LOCAL"]
     end
@@ -23,5 +27,11 @@ module Codacy
       Codacy::Configuration.logger
     end
 
+  end
+
+  class PartialFormatter < Formatter
+    def partial
+      true
+    end
   end
 end
