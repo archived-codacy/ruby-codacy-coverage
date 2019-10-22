@@ -95,15 +95,11 @@ workflows:
             - build_and_test_2.4
             - build_and_test_2.5
             - build_and_test_2.6
-          # filters:
-          #   branches:
-          #     only:
-          #       - master
-      - codacy/tag_version:
-          name: tag_version
-          requires:
-            - publish
           filters:
             branches:
               only:
                 - master
+      - codacy/tag_version:
+          name: tag_version
+          requires:
+            - publish
