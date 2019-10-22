@@ -53,6 +53,7 @@ jobs:
       - run:
           name: Publish to Rubygems
           command: |
+            export PUBLISH_VERSION=$(cat .version)
             gem build codacy-coverage.gemspec
             gem push codacy-coverage-$(cat .version).gem
 
