@@ -8,6 +8,9 @@ jobs:
     parameters:
         ruby_version:
           type: string
+        persist_to_workspace:
+          type: boolean
+          default: false
     docker:
       - image: circleci/ruby:<< parameters.ruby_version >>
     working_directory: ~/workdir
@@ -30,10 +33,13 @@ jobs:
             - vendor/bundle
 
       - run: bundle exec rspec
-      - persist_to_workspace:
-            root: ~/
-            paths:
-              - workdir/*
+      - when:
+          condition: << parameters.persist_to_workspace >>
+          steps:
+            - persist_to_workspace:
+                root: ~/
+                paths:
+                  - workdir/*
   publish:
     docker:
       - image: circleci/ruby:2
@@ -58,6 +64,7 @@ workflows:
       - build_and_test:
           name: build_and_test_2
           ruby_version: "2"
+          persist_to_workspace: true
           requires:
             - codacy/checkout_and_version
       - build_and_test:
