@@ -34,6 +34,7 @@ describe Codacy::ClientAPI do
   describe '.notify_final' do
     context 'missing project token' do
       it 'returns false' do
+        ENV['CODACY_PROJECT_TOKEN'] = ''
         expect(Codacy::ClientAPI.notify_final).to be false
       end
     end
