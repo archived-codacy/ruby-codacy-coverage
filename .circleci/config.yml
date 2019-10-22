@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  codacy: codacy/base@0.3.12
+  codacy: codacy/base@1.0.0
 
 jobs:
   build_and_test:
@@ -30,6 +30,25 @@ jobs:
             - vendor/bundle
 
       - run: bundle exec rspec
+      - persist_to_workspace:
+            root: ~/
+            paths:
+              - workdir/*
+  publish:
+    docker:
+      - image: circleci/ruby:2
+    working_directory: ~/workdir
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Setup Rubygems
+          command: bash .circleci/setup-rubygems.sh
+      - run:
+          name: Publish to Rubygems
+          command: |
+            gem build codacy-coverage.gemspec
+            gem push codacy-coverage-$(cat .version).gem
 
 workflows:
   version: 2
@@ -58,17 +77,24 @@ workflows:
             - codacy/checkout_and_version
       - build_and_test:
           name: build_and_test_2.6
-          ruby_version: "2.5"
+          ruby_version: "2.6"
           requires:
             - codacy/checkout_and_version
-      - codacy/tag_version:
-          name: tag_version
+      - publish:
           requires:
             - build_and_test_2
             - build_and_test_2.3
             - build_and_test_2.4
             - build_and_test_2.5
             - build_and_test_2.6
+          # filters:
+          #   branches:
+          #     only:
+          #       - master
+      - codacy/tag_version:
+          name: tag_version
+          requires:
+            - publish
           filters:
             branches:
               only:
