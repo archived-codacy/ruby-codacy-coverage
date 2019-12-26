@@ -10,6 +10,7 @@ module Codacy
           ENV['WERCKER_GIT_COMMIT'] ||
           ENV['HEROKU_TEST_RUN_COMMIT_VERSION'] ||
           ENV['CI_COMMIT_SHA'] ||
+          ENV['COMMIT_SHA'] || # Google Cloud Build
           git_commit
 
       commit
