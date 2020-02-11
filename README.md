@@ -1,3 +1,7 @@
+# Deprecated
+
+This repository is no longer maintained. As an alternative, check [codacy-coverage-reporter](https://github.com/codacy/codacy-coverage-reporter) to send your test coverage results to your Codacy dashboard.
+
 # ruby-codacy-coverage
 
 Ruby coverage reporter for Codacy https://www.codacy.com
